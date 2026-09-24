@@ -24,6 +24,9 @@ const profile = {
   role: 'PhD Student · Structural Biology',
   institution: 'McGill University',
   email: 'adwaith.biniboseuday@mcgill.ca',
+  // Add your PDF to public/ and replace null with its filename, for example:
+  // cv: 'Adwaith_Uday_CV.pdf',
+  cv: null,
   links: {
     scholar: 'https://scholar.google.com/citations?user=KAh1BioAAAAJ&hl=en&oi=ao',
     orcid: 'https://orcid.org/0009-0005-1524-6307',
@@ -146,7 +149,12 @@ function App() {
             <p>I am a PhD student at {profile.institution} investigating how self-compartmentalized proteases are regulated in <i>M. tuberculosis</i> and human mitochondria.</p>
             <div className="hero-actions">
               <a className="button button-primary" href="#research">Explore my research <ArrowDown size={16} /></a>
-              <a className="text-link" href={`mailto:${profile.email}`}>Get in touch <ArrowRight size={15} /></a>
+              <div className="hero-secondary-actions">
+                <a className="text-link" href={`mailto:${profile.email}`}>Get in touch <ArrowRight size={15} /></a>
+                {profile.cv && (
+                  <a className="text-link" href={`${import.meta.env.BASE_URL}${profile.cv}`} target="_blank" rel="noreferrer">View CV <Download size={15} /></a>
+                )}
+              </div>
             </div>
             <div className="hero-socials" aria-label="Profile links">
               <a href={profile.links.scholar} target="_blank" rel="noreferrer">Google Scholar <ExternalLink /></a>

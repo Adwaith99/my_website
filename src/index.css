@@ -47,6 +47,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--bright); outlin
 .hero h1 em { color: var(--bright); font-family: var(--serif); font-weight: 500; }
 .hero-copy > p { color: rgba(255,255,255,.65); font-size: 16px; font-weight: 300; line-height: 1.75; margin: 32px 0; max-width: 580px; }
 .hero-actions { align-items: center; display: flex; gap: 30px; }
+.hero-secondary-actions { align-items: center; display: flex; gap: 24px; }
 .button { align-items: center; display: inline-flex; font-size: 11px; gap: 12px; letter-spacing: .06em; padding: 14px 19px; text-transform: uppercase; transition: .25s ease; }
 .button-primary { background: var(--bright); color: var(--deep); }
 .button-primary:hover { background: white; transform: translateY(-2px); }
@@ -208,6 +209,7 @@ footer { background: #081817; color: rgba(255,255,255,.34); display: flex; font-
   .hero { min-height: 100vh; padding: 120px 22px 105px; }
   .hero h1 { font-size: 46px; }
   .hero-copy > p { font-size: 14px; }
+  .hero-actions { align-items: flex-start; flex-direction: column; gap: 18px; }
   .hero-socials { gap: 14px; }
   .hero-visual { min-height: 390px; }
   .portrait-placeholder { height: 140px; right: 0; top: 3%; width: 108px; }
