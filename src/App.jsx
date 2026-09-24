@@ -2,12 +2,16 @@ import { useEffect, useState } from 'react'
 import {
   ArrowDown,
   ArrowRight,
+  BrainCircuit,
+  BookOpen,
   Download,
   ExternalLink,
   Github,
   Linkedin,
   Mail,
   Menu,
+  Music2,
+  Palette,
   X,
 } from 'lucide-react'
 import { publications } from './data/publications'
@@ -31,12 +35,7 @@ const profile = {
   },
 }
 
-const navItems = [
-  { label: 'Research', target: 'research' },
-  { label: 'Publications', target: 'publications' },
-  { label: 'Training', target: 'training' },
-  { label: 'Methods', target: 'methods' },
-]
+const navItems = ['Research', 'Publications', 'Journey', 'Methods', 'Beyond', 'Notes']
 
 function MoleculeGraphic() {
   return (
@@ -133,7 +132,7 @@ function App() {
           <div>{profile.name}<small>Structural Biology</small></div>
         </a>
         <nav id="primary-navigation" className={menuOpen ? 'nav-links open' : 'nav-links'} aria-label="Primary navigation">
-          {navItems.map((item) => <a key={item.target} href={`#${item.target}`} onClick={() => setMenuOpen(false)}>{item.label}</a>)}
+          {navItems.map((item) => <a key={item} href={`#${item.toLowerCase()}`} onClick={() => setMenuOpen(false)}>{item}</a>)}
           <a className="nav-contact" href="#contact" onClick={() => setMenuOpen(false)}>Contact <ArrowRight size={15} /></a>
         </nav>
         <button className="menu-button" type="button" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu" aria-expanded={menuOpen} aria-controls="primary-navigation">
@@ -145,11 +144,11 @@ function App() {
         <section id="home" className="hero">
           <div className="hero-noise" />
           <div className="hero-copy reveal">
-            <div className="eyebrow"><span /> Structural biology · Proteostasis</div>
-            <h1>Structural mechanisms<br />of <em>regulated</em><br /><em>proteolysis.</em></h1>
-            <p>I am a PhD student at {profile.institution} studying how self-compartmentalized proteases are regulated in <i>Mycobacterium tuberculosis</i> and human mitochondria, primarily using cryo-EM and protein biochemistry.</p>
+            <div className="eyebrow"><span /> Structural biology · Cryo-EM</div>
+            <h1>Understanding<br /><em>biomolecular mechanisms</em><br />through integrative<br />structural biology.</h1>
+            <p>I am a PhD student at {profile.institution} investigating how self-compartmentalized proteases are regulated in <i>M. tuberculosis</i> and human mitochondria.</p>
             <div className="hero-actions">
-              <a className="button button-primary" href="#research">Research overview <ArrowDown size={16} /></a>
+              <a className="button button-primary" href="#research">Explore my research <ArrowDown size={16} /></a>
               <div className="hero-secondary-actions">
                 <a className="text-link" href={`mailto:${profile.email}`}>Get in touch <ArrowRight size={15} /></a>
                 {profile.cv && (
@@ -175,7 +174,7 @@ function App() {
         </section>
 
         <section id="research" className="section research-section">
-          <SectionHeader number="01" eyebrow="Research" title={<>Mechanisms of<br />regulated proteolysis</>} copy="My work asks how conformational change, allostery and assembly state control protease activity across bacterial and mitochondrial systems." />
+          <SectionHeader number="01" eyebrow="Research" title={<>Questions at the scale<br />of molecules</>} copy="I combine experimental and computational approaches to connect molecular architecture with mechanism, dynamics and biological function." />
           <div className="research-grid">
             {researchThemes.map(({ number, title, eyebrow, description, icon: Icon }) => (
               <article className="research-card" key={title}>
@@ -185,13 +184,14 @@ function App() {
                   <h3>{title}</h3>
                   <p>{description}</p>
                 </div>
+                <a href="#contact" aria-label={`Discuss ${title}`}>Discuss this work <ArrowRight size={15} /></a>
               </article>
             ))}
           </div>
         </section>
 
         <section id="publications" className="section publications-section">
-          <SectionHeader light number="02" eyebrow="Research output" title={<>Publications &<br />preprints</>} copy="Peer-reviewed articles and manuscripts on protease regulation, macromolecular assemblies and structural mechanism." />
+          <SectionHeader light number="02" eyebrow="Selected work" title={<>Publications &<br />preprints</>} copy="Research at the intersection of structural biology, molecular mechanism and computation." />
           <div className="publication-list">
             {publications.slice(0, showAllPublications ? publications.length : 5).map((publication, index) => (
               <article className="publication" key={`${publication.title}-${index}`}>
@@ -227,16 +227,17 @@ function App() {
           </div>
         </section>
 
-        <section id="training" className="section journey-section">
-          <SectionHeader number="03" eyebrow="Training" title={<>Scientific<br />training</>} copy="Research training spanning molecular biology, protein biochemistry and cryo-electron microscopy." />
+        <section id="journey" className="section journey-section">
+          <SectionHeader number="03" eyebrow="Scientific journey" title={<>A path shaped by<br />curiosity</>} copy="Each stage has expanded my skillset and research experience." />
           <div className="timeline">
             {[
-              ['BS (Research)', 'Biology · Indian Institute of Science', 'Training in molecular biology and protein biochemistry.', 'Completed'],
-              ['MS', 'Biology · Indian Institute of Science', 'Research training in cryo-EM and structural biology.', 'Completed'],
-              ['PhD', 'Structural Biology · McGill University', 'Mechanisms of protease regulation studied by cryo-EM and complementary approaches.', 'Current'],
+              ['BS (Research)', 'Biology · Indian Institute of Science', 'Foundations in molecular biology, and biochemistry.', 'Past'],
+              ['MS', 'Biology · Indian Institute of Science', 'Foundations in cryo-EM and structural biology.', 'Past'],
+              ['PhD', 'Structural Biology · McGill', 'Resolving mechanisms of protease regulation using cryo-EM.', 'Now'],
+              // ['Next', 'Postdoctoral research', 'Integrative structural biology, molecular dynamics and AI-guided protein design.', 'Future'],
             ].map(([year, title, text, status]) => (
               <article className="timeline-item" key={year}>
-                <div className={`timeline-marker ${status === 'Current' ? 'now' : ''}`}><span /></div>
+                <div className={`timeline-marker ${status.toLowerCase()}`}><span /></div>
                 <div className="timeline-label">{year}</div>
                 <div><p>{status}</p><h3>{title}</h3><span>{text}</span></div>
               </article>
@@ -246,8 +247,8 @@ function App() {
 
         <section id="methods" className="section methods-section">
           <div className="methods-intro">
-            <SectionHeader light number="04" eyebrow="Technical expertise" title={<>From sample<br />to mechanism</>} />
-            <p>My primary expertise is single-particle cryo-EM, supported by protein production, biochemical validation and computational analysis. I am also developing interests in AI-enabled structural biology and protein design.</p>
+            <SectionHeader light number="04" eyebrow="Methods & skills" title={<>From sample<br />to structure</>} />
+            <p>My work over the years has involved a range of techniques and approaches.</p>
           </div>
           <div className="skills-grid">
             {skills.map(({ name, detail, icon: Icon }, index) => (
@@ -260,16 +261,30 @@ function App() {
           </div>
         </section>
 
+        <section id="beyond" className="section beyond-section">
+          <SectionHeader number="05" eyebrow="Beyond science" title={<>Rhythm, form &<br />curiosity</>} />
+          <div className="beyond-grid">
+            <article className="beyond-feature"><div className="drum-visual"><Music2 /><span className="ring ring-one" /><span className="ring ring-two" /></div><div><span>01 / Rhythm</span><h3>Playing drums</h3><p>Finding balance, precision and creative energy behind the kit.</p></div></article>
+            <article className="beyond-small"><Palette /><span>02 / Visual thinking</span><h3>Scientific illustration & design</h3><p>Turning complex scientific ideas into clear, compelling visual stories.</p></article>
+            <article className="beyond-small accent"><BrainCircuit /><span>03 / Computation</span><h3>Computational biology</h3><p>Exploring where code, data and molecular discovery meet.</p></article>
+          </div>
+        </section>
+
+        <section id="notes" className="section notes-section">
+          <div className="notes-copy"><span className="section-kicker"><span>06</span>Notes</span><h2>Ideas in<br /><em>progress.</em></h2><p>A future home for thoughts on science, creativity and everything in between.</p><span className="notes-status">Publishing soon</span></div>
+          <div className="note-preview"><div className="note-icon"><BookOpen /></div><span>Notebook in development</span><h3>Field notes from the molecular world</h3><p>Short essays on structural biology, research practice and ideas that are still taking shape.</p><div>First note · coming soon</div></div>
+        </section>
+
         <section id="contact" className="contact-section">
           <div className="contact-orbit" aria-hidden="true" />
-          <span className="section-kicker"><span>05</span>Contact</span>
-          <h2>Research &<br /><em>collaboration.</em></h2>
-          <p>For questions about my work, potential collaborations or future research opportunities, please get in touch.</p>
+          <span className="section-kicker"><span>07</span>Contact</span>
+          <h2>Let’s explore the<br /><em>molecular world.</em></h2>
+          <p>I’m always happy to discuss science, possible collaborations or future research opportunities.</p>
           <a className="contact-email" href={`mailto:${profile.email}`}><Mail size={19} /> {profile.email} <ArrowRight size={18} /></a>
           <div className="contact-bottom"><span>{profile.name} · {profile.role}</span><span>{profile.institution} · Montréal, Canada</span></div>
         </section>
       </main>
-      <footer><span>© {new Date().getFullYear()} {profile.name}</span><a href="#home">Back to top ↑</a><span>Structural biology · Cryo-EM</span></footer>
+      <footer><span>© {new Date().getFullYear()} {profile.name}</span><a href="#home">Back to top ↑</a><span>Built for discovery</span></footer>
     </div>
   )
 }
