@@ -26,7 +26,7 @@ const profile = {
   email: 'adwaith.biniboseuday@mcgill.ca',
   // Add your PDF to public/ and replace null with its filename, for example:
   // cv: 'Adwaith_Uday_CV.pdf',
-  cv: null,
+  cv: 'Adwaith_CV_Sep24_2026.pdf',
   links: {
     scholar: 'https://scholar.google.com/citations?user=KAh1BioAAAAJ&hl=en&oi=ao',
     orcid: 'https://orcid.org/0009-0005-1524-6307',
