@@ -23,7 +23,7 @@ const profile = {
   initials: 'ABU',
   role: 'PhD Student · Structural Biology',
   institution: 'McGill University',
-  email: 'adwaith.biniboseuday@mcgill.ca',
+  email: 'adwaith.biniboseuday@mail.mcgill.ca',
   // Add your PDF to public/ and replace null with its filename, for example:
   // cv: 'Adwaith_Uday_CV.pdf',
   cv: 'Adwaith_CV_Sep24_2026.pdf',
